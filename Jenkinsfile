@@ -70,14 +70,14 @@ pipeline {
                   
                     
                     /*DOCKERCOMPOSE*/
-               stage('DOCKER-COMPOSE') {
+               stage('DOCKER COMPOSE') {
                   steps {
                   sh 'docker-compose up -d --build'
                   }
                }
                }
           ////////////////////////////////* *///////////////
-            stage('EMAIL') {
+          
  post {
         failure {
             mail to: "eya.ouellani@esprit.tn",
@@ -90,4 +90,4 @@ pipeline {
             body: "Job has finished successfully."
         }
     }
-          } }
+          } 
