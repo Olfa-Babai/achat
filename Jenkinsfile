@@ -51,7 +51,7 @@ pipeline {
 
                stage('Build Docker Image') {
                   steps {
-                  sh 'docker build -t olfababai/docker_spring:2.2.4 .'
+                  sh 'docker build -t olfababai/docker_achat:2.2.4 .'
                   }
                }
 
@@ -60,7 +60,7 @@ pipeline {
                   withCredentials([string(credentialsId: 'dpwd', variable: 'Olfa07490115')]) {
                   sh "docker login -u olfababai -p ${Olfa07490115}"
                   }
-                  sh 'docker push olfababai/docker_spring:2.2.4'
+                  sh 'docker push olfababai/docker_achat:2.2.4'
                   }
                }
                stage('DOCKER COMPOSE') {
