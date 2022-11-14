@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                 configFileProvider([configFile(fileId: 'olfa', variable: 'settingnexus')]) {
-                    sh 'mvn  -B -DskipTests deploy -s $setting'
+                    sh 'mvn  -B -DskipTests deploy -s $settingnexus'
 
 }                }
             }
