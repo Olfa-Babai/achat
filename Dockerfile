@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-slim
-COPY /target/tpAchatProject-3.0.0.jar app.jar
+FROM openjdk:11
 EXPOSE 8089
-ENTRYPOINT ["java","-jar","app.jar"]
+ADD target/achat-1.0.jar achat-1.0.jar
+ENTRYPOINT ["java","-jar","/achat-1.0.jar"]
