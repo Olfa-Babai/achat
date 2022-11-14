@@ -50,15 +50,7 @@ pipeline {
                   }
                }
 //////////*DOcker push image*//////////////////
-               stage("PUBLISH TO NEXUS") {
-            steps {
-                script {
-                configFileProvider([configFile(fileId: 'eya', variable: 'setting')]) {
-                    sh 'mvn  -B -DskipTests deploy -s $setting'
-
-}                }
-            }
-        }
+               
  stage('DOCKER IMG PUSH') {
                   steps {
                   withCredentials([usernameColonPassword(credentialsId: 'ouellani', variable: '542438388')]) {
