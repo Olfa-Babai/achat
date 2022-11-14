@@ -50,23 +50,28 @@ pipeline {
                   }
                }
 //////////*DOcker push image*//////////////////
-               stage('Push Docker Image') {
-                  steps {
-                  withCredentials([usernameColonPassword(credentialsId: 'ouellani', variable: '542438388')]) {
-                  sh "docker login -u ouellani -p ${542438388}"
-                  }
-                  sh 'docker push ouellani/img:tagname'
-                  }
-               }
-                  
-                    
-                    /*DOCKERCOMPOSE*/
-               stage('DOCKER COMPOSE') {
-                  steps {
-                  sh 'docker-compose up -d --build'
-                  }
-               }
-               }
+                 stage('Push image to docker hub') {
+            steps {
+                echo "<Pushing Docker Image>";
+                script{ 
+                    def mavenPom = readMavenPom file: 'pom.xml'
+                    withCredentials([string(credentialsId: 'docker-credentials', variable: 'dockerPasswd')]) {
+                        sh "docker login -u eyaouellani-p ${dockerPasswd}"
+                    }  
+                    sh "docker push ouellani/img:tagname:${mavenPom.version}" 
+                }
+            }
+        }
+
+        stage('Docker Compose') {
+            steps {
+                echo "<Running Docker Compose>";
+                sh "docker-compose build"
+                sh "docker-compose up -d"
+            }
+        }
+        
+    }
  post {
         failure {
             mail to: "eya.ouellani@esprit.tn",
