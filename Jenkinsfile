@@ -1,7 +1,7 @@
 pipeline {
           agent any
           stages{
-            stage('Recuperation GIT'){
+            stage('Recuperation du projet sur GIT'){
                 steps{
                     echo 'Pulling...';
                     git branch: 'Olfa_Operateur',
@@ -9,18 +9,18 @@ pipeline {
                 }
 
             }
-            stage('Mvn clean'){
+            stage('Clean project'){
             steps{
                 echo 'Pulling...';
                 sh 'mvn clean'
                 }
             }
-             stage('Compilation'){
+             stage('Compilation du projet'){
                 steps{
                 sh 'mvn compile'
                 }
              }
-             stage('Mvn package'){
+             stage('Creation package'){
                 steps{
                 sh 'mvn package -DskipTests=true'
                 }
@@ -35,7 +35,7 @@ pipeline {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
                  }
               }
-             stage("Version nexus") {
+             stage("Version a distribuer nexus") {
             steps {
                 script {
                 configFileProvider([configFile(fileId: 'olfa', variable: 'settingnexus')]) {
