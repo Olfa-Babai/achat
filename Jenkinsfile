@@ -46,7 +46,7 @@ pipeline {
               /* DOCKER */
  stage('BUILD DOCKER IMG') {
                   steps {
-                  sh 'docker build -t ouellani/Ouellani:latest .'
+                  sh 'docker build -t ouellani/ouellani:latest .'
                   }
                }
 //////////*DOcker push image*//////////////////
@@ -56,7 +56,7 @@ pipeline {
                   withCredentials([usernameColonPassword(credentialsId: 'ouellani', variable: '542438388')]) {
                   sh "docker login -u ouellani -p ${542438388}"
                   }
-                  sh 'docker push ouellani/Ouellani:lastest'
+                  sh 'docker push ouellani/ouellani:lastest'
                   }
                }
                   
