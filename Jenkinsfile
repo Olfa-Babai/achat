@@ -46,7 +46,7 @@ pipeline {
               /* DOCKER */
  stage('BUILD DOCKER IMG') {
                   steps {
-                  sh 'docker build -t ouellani/springdevops:latest'
+                  sh 'docker build -t ouellani/springdevops:latest .'
                   }
                }
 //////////*DOcker push image*//////////////////
