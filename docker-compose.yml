@@ -24,7 +24,7 @@ services:
   
   spring_app:
     container_name: spring-app
-    image: wissemchagtmi/projet_devops
+    image: ouellani/ouellani
     restart: on-failure
     environment:
       SPRING_APPLICATION_JSON: '{
