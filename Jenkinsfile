@@ -51,14 +51,7 @@ pipeline {
                }
 //////////*DOcker push image*//////////////////
                
- stage('DOCKER IMG PUSH') {
-                  steps {
-            
-                  sh 'echo dckr_pat_e-TnCHU0f-2mCCE6B7u0X9KN5NQ   | docker login -u ouellani --password-stdin'
-                  
-                  sh 'docker push ouellani/ouellani:lastest'
-                  }
-               }
+
                   
                     
                     /*DOCKERCOMPOSE*/
