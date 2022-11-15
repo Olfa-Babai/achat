@@ -1,48 +1,34 @@
-version: '3'
+version: "3"
+
 services:
-  mysql-db:
-    container_name: mysql-db
+  mysqldb:
     image: mysql:5.7
     restart: unless-stopped
-    ports:
-      - 3306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=devops_db
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=test
+    ports:
+      - "4000:3306"
     volumes:
       - db:/var/lib/mysql
+  app:
+    depends_on:
+      - mysqldb
+    image: 'ouellani/ouellani:latest'
+    build:
+      context: .
 
-  phpmyadmin:
-    container_name: php-my-admin
-    image: phpmyadmin
-    restart: unless-stopped 
-    environment:
-      PMA_HOST: mysql-db
-      PMA_PORT: 3306
-    ports:
-      - 8099:80
-  
-  spring_app:
-    container_name: spring-app
-    image: ouellani/ouellani
     restart: on-failure
+    ports:
+      - "8089:8089"
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://mysql-db:3306/devops_db?createDatabaseIfNotExist=true&useSSL=false",
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/test?useSSL=false",
         "spring.datasource.username" : "root",
-        "spring.datasource.password" : "root",
+        "spring.datasource.password" : "",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto" : "update",
-        "spring.datasource.driver-class-name" : "com.mysql.jdbc.Driver",
-        "server.servlet.context-path" : "/SpringMVC",
-        "server.port" : "8085"
-        }'
-    ports:
-      - 8085:8085
-    volumes:
-      - .m2:/root/.m2
-    depends_on:
-      - mysql-db
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
     stdin_open: true
     tty: true
 volumes:
