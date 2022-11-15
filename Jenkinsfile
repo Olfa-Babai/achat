@@ -46,7 +46,7 @@ pipeline {
               /* DOCKER */
  stage('BUILD DOCKER IMG') {
                   steps {
-                  sh 'docker build -t ouellani/springdevops:2.2.4'
+                  sh 'docker build -t ouellani/springdevops:latest'
                   }
                }
 //////////*DOcker push image*//////////////////
@@ -56,7 +56,7 @@ stage('Push Docker Image') {
                   withCredentials([string(credentialsId: 'CREDOCKER', variable: 'eya123')]) {
                   sh "docker login -u ouellani -p ${542438388}"
                   }
-                  sh 'docker push ouellani/springdevops:2.2.4'
+                  sh 'docker push ouellani/springdevops:latest'
                   }
                }
                   
