@@ -1,13 +1,6 @@
 package tn.esprit.rh.achat;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -60,12 +52,14 @@ public class TestOperateur {
     public void testRetrieveOperateur(){
     	Mockito.when(operateurRepo.findById(Mockito.anyLong())).thenReturn(Optional.of(o));
         Operateur operateurTest = operateurService.retrieveOperateur(o.getIdOperateur());
+        Assertions.assertNotNull(operateurTest);
     }
     
     @Test
     public void testRemoveOperateur(){
     	operateurService.deleteOperateur(o.getIdOperateur());
-        Mockito.verify(operateurRepo, Mockito.times(1)).deleteById(o.getIdOperateur()); 
+        Mockito.verify(operateurRepo, Mockito.times(1)).deleteById(o.getIdOperateur());
+        Assertions.assertFalse(operateurRepo.existsById(o.getIdOperateur()));
     }
     
     @Test

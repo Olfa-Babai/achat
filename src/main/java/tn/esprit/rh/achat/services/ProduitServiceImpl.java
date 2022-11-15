@@ -65,7 +65,7 @@ public class ProduitServiceImpl implements IProduitService {
 			produit.setStock(stock);
 			produitRepository.save(produit);
 		}
-		
+
 
 	}
 
