@@ -18,7 +18,7 @@ services:
     container_name: docker_achat
     ports:
       - '8089:8089'
-    image: olfa/docker_achat:2.2.4
+    image: olfababai/docker_achat:2.2.4
 
 volumes:
   mysql-container: { }
