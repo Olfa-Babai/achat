@@ -52,7 +52,7 @@ public class TestOperateur {
     public void testRetrieveOperateur(){
     	Mockito.when(operateurRepo.findById(Mockito.anyLong())).thenReturn(Optional.of(o));
         Operateur operateurTest = operateurService.retrieveOperateur(o.getIdOperateur());
-       // Assertions.assertNotNull(operateurTest.getIdOperateur());
+        Assertions.assertNotNull(operateurTest);
     }
     
     @Test
