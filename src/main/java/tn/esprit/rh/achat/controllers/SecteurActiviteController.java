@@ -3,6 +3,8 @@ package tn.esprit.rh.achat.controllers;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.rh.achat.converters.SecteurActiviteConverter;
+import tn.esprit.rh.achat.dtos.SecteurActiviteDTO;
 import tn.esprit.rh.achat.entities.SecteurActivite;
 import tn.esprit.rh.achat.services.ISecteurActiviteService;
 
@@ -16,6 +18,9 @@ public class SecteurActiviteController {
 
 	@Autowired
 	ISecteurActiviteService secteurActiviteService;
+
+	@Autowired
+	SecteurActiviteConverter secteurActiviteConverter;
 	
 	// http://localhost:8089/SpringMVC/secteurActivite/retrieve-all-secteurActivite
 	@GetMapping("/retrieve-all-secteurActivite")
@@ -35,8 +40,9 @@ public class SecteurActiviteController {
 	// http://localhost:8089/SpringMVC/secteurActivite/add-secteurActivite
 	@PostMapping("/add-secteurActivite")
 	@ResponseBody
-	public SecteurActivite addSecteurActivite(@RequestBody SecteurActivite sa) {
-		return secteurActiviteService.addSecteurActivite(sa);
+	public SecteurActivite addSecteurActivite(@RequestBody SecteurActiviteDTO sa) {
+		SecteurActivite secteurActivite=secteurActiviteConverter.dtoToEntity(sa);
+		return secteurActiviteService.addSecteurActivite(secteurActivite);
 	}
 
 	// http://localhost:8089/SpringMVC/secteurActivite/remove-secteurActivite/{secteurActivite-id}
@@ -49,8 +55,9 @@ public class SecteurActiviteController {
 	// http://localhost:8089/SpringMVC/secteurActivite/modify-secteurActivite
 	@PutMapping("/modify-secteurActivite")
 	@ResponseBody
-	public SecteurActivite modifySecteurActivite(@RequestBody SecteurActivite secteurActivite) {
-		return secteurActiviteService.updateSecteurActivite(secteurActivite);
+	public SecteurActivite modifySecteurActivite(@RequestBody SecteurActiviteDTO secteurActivite) {
+		SecteurActivite sa=secteurActiviteConverter.dtoToEntity(secteurActivite);
+		return secteurActiviteService.updateSecteurActivite(sa);
 	}
 
 	
