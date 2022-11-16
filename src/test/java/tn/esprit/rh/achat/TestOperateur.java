@@ -31,7 +31,7 @@ public class TestOperateur {
     OperateurRepository operateurRepo;
     @InjectMocks
     OperateurServiceImpl operateurService;
-    Operateur o = new Operateur("nom operateur","prenom operateur","testing",null);
+    Operateur o = new Operateur("operateur 1","test 1","test test",null);
     
     @Test
     public void testAddOperateur() {
@@ -50,9 +50,9 @@ public class TestOperateur {
 	
     @Test
     public void testRetrieveOperateur(){
-    	Mockito.when(operateurRepo.findById(Mockito.anyLong())).thenReturn(Optional.of(o));
+        Mockito.when(operateurRepo.findById(1L)).thenReturn(Optional.of(o));
         Operateur operateurTest = operateurService.retrieveOperateur(o.getIdOperateur());
-        //Assertions.assertNotNull(operateurTest);
+        Assertions.assertEquals(operateurTest,o);
     }
     
     @Test
