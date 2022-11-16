@@ -31,8 +31,7 @@ public class SecteurActiviteServiceImpl implements ISecteurActiviteService{
 
 	@Override
 	public SecteurActivite updateSecteurActivite(SecteurActivite sa) {
-		SecteurActivite secteurActivite=retrieveSecteurActivite(sa.getIdSecteurActivite());
-		if(!(secteurActivite.equals(sa))){
+		if(sa.getIdSecteurActivite()!=0){
 			secteurActiviteRepository.save(sa);
 		}
 		return sa;
