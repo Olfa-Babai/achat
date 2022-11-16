@@ -31,7 +31,7 @@ public class OperateurServiceImpl implements IOperateurService {
 
 	@Override
 	public Operateur updateOperateur(Operateur o) {
-		if(o.getIdOperateur()!=0){
+		if(!(o.getNom().equals(""))){
 			operateurRepository.save(o);
 		}
 		return o;
