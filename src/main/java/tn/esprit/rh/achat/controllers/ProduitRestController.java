@@ -27,8 +27,7 @@ public class ProduitRestController {
 	@GetMapping("/retrieve-all-produits")
 	@ResponseBody
 	public List<Produit> getProduits() {
-		List<Produit> list = produitService.retrieveAllProduits();
-		return list;
+		return produitService.retrieveAllProduits();
 	}
 
 	// http://localhost:8089/SpringMVC/produit/retrieve-produit/8
@@ -39,7 +38,7 @@ public class ProduitRestController {
 	}
 
 	/* Ajouter en produit tout en lui affectant la catégorie produit et le stock associés */
-	// http://localhost:8089/SpringMVC/produit/add-produit/{idCategorieProduit}/{idStock}
+	// http://localhost:8089/SpringMVC/produit/add-produit/1/1
 	@PostMapping("/add-produit")
 	@ResponseBody
 	public Produit addProduit(@RequestBody ProduitDTO p) {
@@ -48,14 +47,14 @@ public class ProduitRestController {
 		return produitService.addProduit(produit);
 	}
 
-	// http://localhost:8089/SpringMVC/produit/remove-produit/{produit-id}
+	// http://localhost:8089/SpringMVC/produit/remove-produit/1
 	@DeleteMapping("/remove-produit/{produit-id}")
 	@ResponseBody
 	public void removeProduit(@PathVariable("produit-id") Long produitId) {
 		produitService.deleteProduit(produitId);
 	}
 
-	// http://localhost:8089/SpringMVC/produit/modify-produit/{idCategorieProduit}/{idStock}
+	// http://localhost:8089/SpringMVC/produit/modify-produit/1/1
 	@PutMapping("/modify-produit")
 	@ResponseBody
 	public Produit modifyProduit(@RequestBody ProduitDTO p) {

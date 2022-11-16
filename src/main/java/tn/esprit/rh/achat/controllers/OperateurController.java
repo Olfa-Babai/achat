@@ -44,7 +44,7 @@ public class OperateurController {
 		return operateurService.addOperateur(o);
 	}
 
-	// http://localhost:8089/SpringMVC/operateur/remove-operateur/{operateur-id}
+	// http://localhost:8089/SpringMVC/operateur/remove-operateur/1
 	@DeleteMapping("/remove-operateur/{operateur-id}")
 	@ResponseBody
 	public void removeOperateur(@PathVariable("operateur-id") Long operateurId) {
