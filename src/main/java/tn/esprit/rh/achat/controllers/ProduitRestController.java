@@ -3,6 +3,8 @@ package tn.esprit.rh.achat.controllers;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.rh.achat.converters.ProduitConverter;
+import tn.esprit.rh.achat.dtos.ProduitDTO;
 import tn.esprit.rh.achat.entities.Produit;
 import tn.esprit.rh.achat.services.IProduitService;
 
@@ -17,6 +19,9 @@ public class ProduitRestController {
 
 	@Autowired
 	IProduitService produitService;
+
+	@Autowired
+	ProduitConverter produitConverter;
 
 	// http://localhost:8089/SpringMVC/produit/retrieve-all-produits
 	@GetMapping("/retrieve-all-produits")
@@ -37,9 +42,10 @@ public class ProduitRestController {
 	// http://localhost:8089/SpringMVC/produit/add-produit/{idCategorieProduit}/{idStock}
 	@PostMapping("/add-produit")
 	@ResponseBody
-	public Produit addProduit(@RequestBody Produit p) {
-		Produit produit = produitService.addProduit(p);
-		return produit;
+	public Produit addProduit(@RequestBody ProduitDTO p) {
+
+		Produit produit = produitConverter.dtoToEntity(p);
+		return produitService.addProduit(produit);
 	}
 
 	// http://localhost:8089/SpringMVC/produit/remove-produit/{produit-id}
@@ -52,8 +58,9 @@ public class ProduitRestController {
 	// http://localhost:8089/SpringMVC/produit/modify-produit/{idCategorieProduit}/{idStock}
 	@PutMapping("/modify-produit")
 	@ResponseBody
-	public Produit modifyProduit(@RequestBody Produit p) {
-		return produitService.updateProduit(p);
+	public Produit modifyProduit(@RequestBody ProduitDTO p) {
+		Produit produit=produitConverter.dtoToEntity(p);
+		return produitService.updateProduit(produit);
 	}
 
 	/*
