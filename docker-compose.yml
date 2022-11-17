@@ -1,35 +1,35 @@
-version: "3"
-
+version: '3'
 services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
+  database:
+    image: mysql
+    container_name: mysql
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_DATABASE=test
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: tpachato   
     ports:
-      - "4000:3306"
-    volumes:
-      - db:/var/lib/mysql
-  app:
+      - 3306:3306
+    networks:
+     - projectnetwork
+     
+  spring-boot:
+    image: aminemokaddem/spring
+    container_name: spring
+    ports:
+      - 8089:8089
     depends_on:
-      - mysqldb
-    image: 'ouellani/ouellani:latest'
-    build:
-      context: .
-
-    restart: on-failure
-    ports:
-      - "8089:8089"
-    environment:
-      SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/test?useSSL=false",
-        "spring.datasource.username" : "root",
-        "spring.datasource.password" : "",
-        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto" : "update"
-      }'
-    stdin_open: true
-    tty: true
-volumes:
-  db:
+      - database
+    networks:
+      - projectnetwork 
+    restart: on-failure     
+  angular:
+    image: aminemokaddem/agular
+    container_name: angular
+    ports: 
+      - 80:80
+    depends_on:
+      - spring-boot
+    networks:
+      - projectnetwork
+  
+networks:
+  projectnetwork:
