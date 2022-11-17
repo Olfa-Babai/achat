@@ -1,9 +1,9 @@
 pipeline {
           agent any
-          
+           
         
           stages{
-            stage(' GIT'){
+            /*   stage(' GIT'){
                 steps{
                     echo 'Pulling...';
                     git branch: 'brancheEya',
@@ -57,7 +57,7 @@ pipeline {
                   }
                } 
                   
-              /* DOCKER */
+              DOCKER 
                     
                     
                stage('BUILD DOCKER IMG') {
@@ -67,7 +67,7 @@ pipeline {
                }
 //////////*DOcker push image*//////////////////
                
-           /*         
+          /*       
               stage('Push Docker Image') {
                   steps {
                   withCredentials([string(credentialsId: 'CREDOCKER', variable: 'eya123')]) {
@@ -75,8 +75,8 @@ pipeline {
                   }
                   sh 'docker push ouellani/springdevops:latest'
                   }
-               }
-                  */
+               }*/
+                  
                     
                     /*DOCKERCOMPOSE*/
                stage('DOCKER COMPOSE') {
