@@ -4,9 +4,6 @@ import org.springframework.stereotype.Component;
 import tn.esprit.rh.achat.dtos.StockDTO;
 import tn.esprit.rh.achat.entities.Stock;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
 public class StockConverter {
 
