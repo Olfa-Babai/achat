@@ -68,14 +68,14 @@ pipeline {
 //////////*DOcker push image*//////////////////
                
                 
-          /*    stage('Push Docker Image') {
+             stage('Push Docker Image') {
                   steps {
                   withCredentials([string(credentialsId: 'CREDOCKER', variable: 'eya123')]) {
                   sh "docker login -u ouellani -p ${542438388}"
                   }
                   sh 'docker push ouellani/springdevops:latest'
                   }
-               }*/
+               }
                   
                     
                     /*DOCKERCOMPOSE*/
