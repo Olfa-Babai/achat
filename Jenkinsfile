@@ -57,7 +57,7 @@ pipeline {
                   }
                } 
                   
-              DOCKER 
+           /*   DOCKER */
                     
                     
                stage('BUILD DOCKER IMG') {
