@@ -90,15 +90,17 @@ pipeline {
          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           
  post {
-        failure {
-            mail to: "eya.ouellani@esprit.tn",
-            subject: "${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}!",
-            body: "Check console output at ${env.BUILD_URL} to view the results."
-        }
         success {
-            mail to: "ouellanieya@gmail.com",
-            subject: "${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}!",
-            body: "Job has finished successfully."
+             mail to: "ouellanieya@gmail.com",
+                    subject: "Build sucess",
+                    body: "sucess"
+            echo 'successful'
         }
-    }
+        failure {
+             mail to: "ouellanieya@gmail.com",
+                    subject: "Build failed",
+                    body: "failed"
+            echo 'failed'
+        }
+      }
           } 
