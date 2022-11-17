@@ -3,7 +3,7 @@ pipeline {
            
         
           stages{
-            /*   stage(' GIT'){
+               stage(' GIT'){
                 steps{
                     echo 'Pulling...';
                     git branch: 'brancheEya',
@@ -67,7 +67,7 @@ pipeline {
                }
 //////////*DOcker push image*//////////////////
                
-          /*       
+                
               stage('Push Docker Image') {
                   steps {
                   withCredentials([string(credentialsId: 'CREDOCKER', variable: 'eya123')]) {
@@ -75,7 +75,7 @@ pipeline {
                   }
                   sh 'docker push ouellani/springdevops:latest'
                   }
-               }*/
+               }
                   
                     
                     /*DOCKERCOMPOSE*/
