@@ -11,11 +11,22 @@
 	<groupId>tn.esprit.rh</groupId>
 	<artifactId>achat</artifactId>
 	<version>1.0</version>
+	<packaging>pom</packaging>
+	<distributionManagement> <repository> 
+	<id>deploymentRepo</id>
+	
+	<url>http://192.168.0.4:8081/repository/maven-releases/</url>
+	</repository>
+	 <snapshotRepository>
+        <id>deploymentRepo</id>
+        <url>http://192.168.0.4:8081/repository/maven-snapshots/</url>
+    </snapshotRepository> </distributionManagement>
 	<name>achat</name>
 	<description>Projet pour le module DevOps</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<skipTests>true</skipTests>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -25,6 +36,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -68,9 +91,11 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName> achat </finalName>
 	</build>
 
 </project>
